@@ -9,7 +9,6 @@ const AddTransaction = () => {
     const[amount, setAmount] = useState(0);
     const[category, setCategory] = useState("");
     const[description, setDescription] = useState("");
-    //const[date, setDate] = useState(new Date());
     const [date, setDate] = useState(() => {
         const today = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
         return today;
