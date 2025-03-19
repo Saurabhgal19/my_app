@@ -26,12 +26,14 @@ const Transaction = () => {
       function handleEdit(index) {
         const editTransaction = transaction[index];
         navigate("/add-transaction", {
-            state: {transaction:{...editTransaction, index}
+            state: {transaction: {...editTransaction, index}
         }})
       }
 
       function handleDelete(index) {
-       
+        localStorage.removeItem(index);
+        const updatedTransactions = transaction.filter((transaction, i) => i !== index);
+        setTransaction(updatedTransactions);
       }
        
   return (

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import "../styles/Dashboard.css"
 import TransactionCard from '../Components/TransactionCard'
 import RecentTransaction from '../Components/RecentTransaction';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
 
@@ -9,6 +10,8 @@ const Dashboard = () => {
     const[totalIncome, setTotalIncome] = useState(0);
     const[totalExpense, setTotalExpence] = useState(0);
     const[balance, setBalance] = useState(0);
+
+    const location = useNavigate();
 
     useEffect(()=> {
         const existingTransactions = JSON.parse(localStorage.getItem("Transactions")) || [];
@@ -37,7 +40,7 @@ const Dashboard = () => {
     <div className='dashboard'>
         <div className='dashboard-inner'>
             <h2>Dashboard</h2>
-            <button className='add-transaction'>
+            <button className='add-transaction' onClick={() => location("/add-transaction")}>
                 + Add Transacton
             </button>
         </div>

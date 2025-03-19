@@ -14,6 +14,9 @@ const AddTransaction = () => {
         const today = new Date().toISOString().split('T')[0]; 
         return today;
       });
+    
+    const[transaction, setTransaction] = useState([]);
+    const[editIndex, setEditIndex] = useState(null);
 
 
     const location = useLocation();
@@ -29,23 +32,35 @@ const AddTransaction = () => {
             return;
         }
 
-        const existingTransactions = JSON.parse(localStorage.getItem("Transactions") || [] );
-
         const currentTransaction= {
             type:type,
             amount:parseFloat(amount),
             category,
             description,
             date
-        }   
+        }  
+        let newTransaction;
+        if(editIndex == null) {
+            newTransaction =[...transaction, currentTransaction];
+        }
+        else {
+            newTransaction=[...transaction];
+            newTransaction[editIndex] = currentTransaction;
+        }
+        // const newTransaction = [...transaction, currentTransaction];
 
-        const newTransaction = [...existingTransactions, currentTransaction];
-
-        //now comming in Object -> convert it into readable format 
+        //now comming in Object -> convert it into readable format -> Add data into Local Storage 
         localStorage.setItem("Transactions", JSON.stringify(newTransaction));
 
        // Show success toast
-    toast.success("Transaction added successfully!", { position: "bottom-right", theme:"colored", closeButton: false });
+                //toast.success("Transaction added successfully!", { position: "bottom-right", theme:"colored", closeButton: false });
+
+        if(editIndex !== null) {
+            toast.success(`${type} Updated Successfully`)
+        }
+        else {
+            toast.success(`${type} Added Successfully`)
+        }        
 
         setDescription("");
         setCategory("");
@@ -55,6 +70,8 @@ const AddTransaction = () => {
     }
 
     useEffect(() =>{
+        const existingTransactions = JSON.parse(localStorage.getItem("Transactions") || [] );
+            setTransaction(existingTransactions);
         console.log(location.state)
         //Destructuring data 
         if(location.state  && location.state.transaction) {
@@ -64,6 +81,7 @@ const AddTransaction = () => {
             setCategory(transaction.category);
             setDescription(transaction.description);
             setDate(transaction.date);
+            setEditIndex(transaction.index);
         }
     },[location])
 
