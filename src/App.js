@@ -5,17 +5,21 @@ import { Report } from './Pages/Report';
 import { Navbar } from './Components/Navbar';
 import { NotFound } from './Pages/NotFound';
 import AddTransaction from './Pages/AddTransaction';
+import Dashboard from './Pages/Dashboard';
 
 function App() {
+
+
   return (
     <div>
      <Navbar/>
       <Routes>
-        <Route path='/' element={<AddTransaction/>} />
+        <Route path='/' element={<Dashboard/>} />
         <Route path='/reports' element={<Report/>} />
         <Route path='/transaction' element={<Transaction/>} />
         <Route path='*' element={<NotFound/>}/>
       </Routes>
+
     </div>
   );
 }
