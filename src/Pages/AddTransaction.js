@@ -55,6 +55,7 @@ const AddTransaction = () => {
        // Show success toast
                 //toast.success("Transaction added successfully!", { position: "bottom-right", theme:"colored", closeButton: false });
 
+        //if transaction is empty, means need to add data 
         if(editIndex !== null) {
             toast.success(`${type} Updated Successfully`)
         }
@@ -92,11 +93,11 @@ const AddTransaction = () => {
             <div className='transaction-type'>
                 {/* Options added */}
                 <label>
-                    <input type='radio'  checked={type ==="Expense"} value="Expense" name='Spent_Option' onChange={()=> SetType("Expense")}/> Expense
+                    <input type='radio' checked={type ==="Expense"} value="Expense" name='Spent_Option' onChange={()=> SetType("Expense")}/> Expense
                 </label>
 
                 <label>
-                    <input type='radio'  value="Income" checked={type ==="Income"} name='Spent_Option' onChange={() => SetType("Income")}/> Income
+                    <input type='radio' value="Income" checked={type ==="Income"} name='Spent_Option' onChange={() => SetType("Income")}/> Income
                 </label>
             </div>
 
@@ -112,7 +113,7 @@ const AddTransaction = () => {
             </select>
         <textarea value={description} placeholder="Description" onChange={(e)=> setDescription(e.target.value)} ></textarea>
         <input  type="date" value={date} onChange={(e) => setDate(e.target.value)}  />
-        <button onClick={handleAddTransaction} >Add Transaction</button>
+        <button onClick={handleAddTransaction}>{editIndex == null ? "Add Transaction" : "Update Transaction"}</button>
         </div>
 
       
