@@ -7,7 +7,7 @@ export const Navbar = () => {
     const location = useLocation();
 
     useEffect(()=> {
-        console.log(location)
+        
     },[location])
 
 
