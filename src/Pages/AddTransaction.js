@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "../styles/AddTransaction.css"
 import { ToastContainer, toast } from 'react-toastify';
+import { useLocation } from 'react-router-dom';
 
 const AddTransaction = () => {
 
@@ -10,9 +11,12 @@ const AddTransaction = () => {
     const[category, setCategory] = useState("");
     const[description, setDescription] = useState("");
     const [date, setDate] = useState(() => {
-        const today = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
+        const today = new Date().toISOString().split('T')[0]; 
         return today;
       });
+
+
+    const location = useLocation();
 
     function handleOnChange(e) {
         setAmount(e.target.value);
@@ -49,6 +53,19 @@ const AddTransaction = () => {
         SetType("Expense");
         setAmount(0)
     }
+
+    useEffect(() =>{
+        console.log(location.state)
+        //Destructuring data 
+        if(location.state  && location.state.transaction) {
+            const transaction = location.state.transaction;
+            SetType(transaction.type);
+            setAmount(transaction.amount);
+            setCategory(transaction.category);
+            setDescription(transaction.description);
+            setDate(transaction.date);
+        }
+    },[location])
 
   return (
     <div className='add-transaction-container'>

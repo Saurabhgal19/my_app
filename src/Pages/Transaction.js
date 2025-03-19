@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import "../styles/Transaction.css"
 import NoTransaction from '../Components/NoTransaction';
+import { useNavigate } from 'react-router-dom';
 
 const Transaction = () => {
 
     const [transaction,setTransaction]=useState([]);
 
-    useEffect(()=>{
+    const navigate = useNavigate();
+
+    useEffect(() => {
         const existingTransactions = JSON.parse(localStorage.getItem("Transactions")) || [];
         setTransaction(existingTransactions);
-      },[]);
+    }, []);
 
     const categoryEmojis = {
         Salary: "💰",
@@ -19,6 +22,18 @@ const Transaction = () => {
         Entertainment: "🎭",
         Others: "📝",
       };
+
+      function handleEdit(index) {
+        const editTransaction = transaction[index];
+        navigate("/add-transaction", {
+            state: {transaction:{...editTransaction, index}
+        }})
+      }
+
+      function handleDelete(index) {
+       
+      }
+       
   return (
     <div className='transactions-container'>
       <h1>All Transactions</h1>
@@ -58,13 +73,13 @@ const Transaction = () => {
                             <div className="action-buttons">
                                 <button
                                     className="edit-btn"
-                                    //</div>onClick={() => handleEdit(index)}
+                                    onClick={() => handleEdit(index)}
                                     >
                                     ✏️ Edit
                                 </button>
                                 <button
                                     className="delete-btn"
-                                    //onClick={() => handleDelete(index)}
+                                    onClick={() => handleDelete(index)}
                                     >
                                     🗑 Delete
                                 </button>

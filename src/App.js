@@ -1,5 +1,4 @@
 import {Routes, Route} from 'react-router-dom';
-// import Dashboard from './Pages/Dashboard';
 import Transaction from './Pages/Transaction';
 import { Report } from './Pages/Report';
 import { Navbar } from './Components/Navbar';
@@ -18,6 +17,7 @@ function App() {
         <Route path='/reports' element={<Report/>} />
         <Route path='/transaction' element={<Transaction/>} />
         <Route path='*' element={<NotFound/>}/>
+        <Route path='/add-transaction' element={<AddTransaction/>}/>
       </Routes>
 
     </div>
