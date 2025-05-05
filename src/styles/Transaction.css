@@ -1,46 +1,87 @@
-
 .transactions-container {
-    max-width: 1000px;
-    margin: auto;
-    padding: 20px;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  thead {
-    background: #f9f9f9;
-  }
-  
-  td, th {
-    padding: 12px;
-    border: 1px solid #ddd;
-    text-align: center;
-  }
- 
-  .action-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-  }
-  
-  .edit-btn, .delete-btn {
-    border: none;
-    padding: 6px 12px;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  .edit-btn {
-    background: hsl(45, 92%, 47%);
-    color: black;
-  }
-  
-  .delete-btn {
-    background: #dc3545;
-    color: white;
-  }
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+}
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  table-layout: fixed; /* Prevents shifting columns */
+}
+
+thead {
+  background: #f9f9f9;
+}
+
+td,
+th {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: center;
+  height: 48px;
+  box-sizing: border-box;
+  word-wrap: break-word;
+}
+
+tbody tr:hover {
+  background-color: #f5f5f5; /* subtle row highlight */
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+
+.edit-btn,
+.delete-btn {
+  display: inline-flex;            /* makes icon + text stay in one line */
+  align-items: center;            /* center vertically */
+  justify-content: center;        /* center horizontally */
+  gap: 6px;                        /* space between icon and text */
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  font-weight: normal;
+  font-size: 14px;
+  min-width: 80px;
+  height: 36px;
+  box-sizing: border-box;
+  white-space: nowrap;            /* ⛔ prevent line breaks */
+}
+
+
+.edit-btn {
+  background: hsl(45, 92%, 47%);
+  color: black;
+}
+.edit-btn:hover {
+  background-color: #e0c13b;
+  transform: scale(1.02);
+}
+
+
+.delete-btn {
+  background: #dc3545;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #bb2d3b;
+  transform: scale(1);
+}
+
+.income {
+  color: green;
+  font-weight: 600;
+}
+
+.expense {
+  color: red;
+  font-weight: 600;
+}
