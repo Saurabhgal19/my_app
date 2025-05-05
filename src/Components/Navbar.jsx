@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import '../styles/Navbar.css'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify';
 
 export const Navbar = () => {
 
     const location = useLocation();
     const navigate = useNavigate();
+    const [showConfirmModal, setShowConfirmModal] = useState(false);
 
     // const[quote, setQuote] = useState(null);
-    // const [isModalOpen, setIsModalOpen] = useState(false);
+     //const [isModalOpen, setIsModalOpen] = useState(false);
 
     // const fetchQuote = async () => {
     //   try {
@@ -23,9 +25,14 @@ export const Navbar = () => {
     //   }
     // }
 
-    function handleReset() {
+    function handleResetConfirmeReset() {
       localStorage.clear();
-      navigate("/");
+
+      setTimeout(() => {
+        navigate("/");
+        window.location.reload();
+      }, 2000);
+
     }
 
   return (
@@ -46,7 +53,7 @@ export const Navbar = () => {
         <div className="quote-btn" onClick={fetchQuote} >💡 Get Quote</div>
         </li> */}
         <li>
-        <div className="reset-btn" onClick={handleReset}>🔄 Reset</div>
+        <div className="reset-btn" onClick={() => setShowConfirmModal(true)}>🔄 Reset</div>
         </li>
       </ul> 
 
@@ -59,6 +66,18 @@ export const Navbar = () => {
             </div>
           </div>
         )} */}
+
+        {showConfirmModal && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <p>Are you sure you want to reset all data?</p>
+            <div className="modal-actions">
+              <button onClick={handleResetConfirmeReset}>Yes</button>
+              <button onClick={() => setShowConfirmModal(false)}>No</button>
+            </div>
+          </div>
+        </div>
+      )}
         </nav>
     </div>
   )

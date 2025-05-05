@@ -73,7 +73,7 @@ const Dashboard = () => {
 
         setTotalExpence(expense);
         setTotalIncome(income);
-        setBalance(balance);
+        setBalance(income - expense);
         setCategoryData(categoryBreakDown);
         setMaxExpense(highestExpense);
 

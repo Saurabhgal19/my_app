@@ -59,10 +59,15 @@ const AddTransaction = () => {
 
         //if transaction is empty, means need to add data 
         if(editIndex !== null) {
-            toast.success(`${type} Updated Successfully`)
+            toast.success(`${type} Updated Successfully { position: "bottom-right", theme:"colored", closeButton: false }`)
         }
         else {
-            toast.success(`${type} Added Successfully`)
+            toast.success(`${type} Added Successfully` , {
+                 position: "top-right",
+                theme:"colored", 
+                closeButton: false,
+                autoClose : 2000,
+            });
         }        
 
         setDescription("");
