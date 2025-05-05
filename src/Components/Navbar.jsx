@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import '../styles/Navbar.css'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 export const Navbar = () => {
 
     const location = useLocation();
+    const navigate = useNavigate();
 
     // const[quote, setQuote] = useState(null);
     // const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,6 +22,11 @@ export const Navbar = () => {
     //     console.log(error);
     //   }
     // }
+
+    function handleReset() {
+      localStorage.clear();
+      navigate("/");
+    }
 
   return (
     <div>
@@ -40,7 +46,7 @@ export const Navbar = () => {
         <div className="quote-btn" onClick={fetchQuote} >💡 Get Quote</div>
         </li> */}
         <li>
-        <div className="reset-btn">🔄 Reset</div>
+        <div className="reset-btn" onClick={handleReset}>🔄 Reset</div>
         </li>
       </ul> 
 

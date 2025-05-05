@@ -5,7 +5,7 @@ const TransactionCard = ({balance,income,expense}) => {
     <div>
       <div className='balance-card'>
         <p>Current Balance</p>
-        <h1>{balance}</h1>
+        <h1>₹{balance}</h1>
       </div>
 
       <div className='summary-cards'>

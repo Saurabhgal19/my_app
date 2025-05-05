@@ -38,7 +38,7 @@
     justify-content: space-between;
     align-items: center;
 }
-.transactions-charts-row {
+.transactions-chart-row {
     display: flex;
     gap: 1rem;
     margin-top: 1rem;
@@ -83,3 +83,6 @@
     width: 90% !important;
     height: 100% !important;
   }
+
+
+

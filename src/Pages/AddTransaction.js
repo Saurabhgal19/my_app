@@ -52,6 +52,8 @@ const AddTransaction = () => {
         //now comming in Object -> convert it into readable format -> Add data into Local Storage 
         localStorage.setItem("Transactions", JSON.stringify(newTransaction));
 
+        setTransaction(newTransaction);
+
        // Show success toast
                 //toast.success("Transaction added successfully!", { position: "bottom-right", theme:"colored", closeButton: false });
 
@@ -71,7 +73,7 @@ const AddTransaction = () => {
     }
 
     useEffect(() =>{
-        const existingTransactions = JSON.parse(localStorage.getItem("Transactions") || [] );
+        const existingTransactions = JSON.parse(localStorage.getItem("Transactions") || "[]" );
             setTransaction(existingTransactions);
         console.log(location.state)
         //Destructuring data 
